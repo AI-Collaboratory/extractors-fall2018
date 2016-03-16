@@ -1,6 +1,12 @@
-# FROM clowder/python-base
 FROM ncsa/clowder-extractors-python-base
 MAINTAINER Sandeep Satheesan <sandeeps@illinois.edu>
+
+# Setup software dependencies
+USER root
+COPY bintray.key /tmp/
+RUN apt-key add /tmp/bintray.key
+RUN echo "deb http://dl.bintray.com/siegfried/debian wheezy main" | tee -a /etc/apt/sources.list
+RUN apt-get update && apt-get -y install siegfried
 
 # Setup environment variables. These are passed into the container. You can change
 # these to your setup. If RABBITMQ_URI is not set, it will try and use the rabbitmq
@@ -10,8 +16,8 @@ MAINTAINER Sandeep Satheesan <sandeeps@illinois.edu>
 ENV RABBITMQ_URI="" \
     RABBITMQ_EXCHANGE="clowder" \
     RABBITMQ_VHOST="%2F" \
-    RABBITMQ_QUEUE="wordCount" \
-    MAIN_SCRIPT="wordcount.py"
+    RABBITMQ_QUEUE="siegfried" \
+    MAIN_SCRIPT="siegfried.py"
 
 # Switch to clowder, copy files and be ready to run
 USER clowder

@@ -23,8 +23,8 @@ rabbitmq:
     - "15672:15672"
 
 # start extractor
-wordcount:
-  image: clowder_wordcount:latest
+siegfried:
+  image: siegfried:latest
   environment:
     RABBITMQ_URI: "amqp://guest:guest@rabbitmq:5672/%2f"
   links:
