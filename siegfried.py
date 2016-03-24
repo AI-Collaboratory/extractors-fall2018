@@ -44,7 +44,7 @@ def process_file(parameters):
     afile = result['files'][0]  # always one file only
 
     content = {}  # assertions about the file
-    content['filesize'] = afile['filesize']
+    content['dcterms:extent'] = afile['filesize']
 
     matches = []
     for match in afile['matches']:
