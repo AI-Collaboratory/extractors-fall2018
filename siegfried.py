@@ -3,6 +3,7 @@
 import subprocess
 import logging
 import json
+import datetime
 from config import *
 import pyclowder.extractors as extractors
 from requests.exceptions import HTTPError
@@ -71,9 +72,32 @@ def process_file(parameters):
 
     jsonld_wrap = {
         "@context": {
+            "med": "http://medici.ncsa.illinois.edu/",
+            "extractor_id": {
+              "@id": "med:extractor/id",
+              "@type": "@id"
+            },
+            "user_id": {
+              "@id": "med:user/id",
+              "@type": "@id"
+            },
+            "created_at": {
+              "@id": "http://purl.org/dc/terms/created",
+              "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+            },
+            "agent": {
+              "@id": "http://www.w3.org/ns/prov#Agent"
+            },
+            "user": "med:user",
+            "extractor": "med:extractor",
+            "content": {
+              "@id": "http://medici.ncsa.illinois.edu/metadata/content"
+            },
+            "file_id": {
+              "@id": "http://medici.ncsa.illinois.edu/metadata/file_id"
+            },
             "sf": "http://www.itforarchivists.com/siegfried/",
-            "dcterms": "http://purl.org/dc/terms/",
-            "@vocab": "http://example.com/foo/"
+            "dcterms": "http://purl.org/dc/terms/"
         },
         "content": content,
         "agent": {
@@ -81,8 +105,8 @@ def process_file(parameters):
             "name": "Siegfried Extractor (PRONOM format identification)",
             "extractor_id":
                 "https://dts.ncsa.illinois.edu/api/extractors/siegfried"
-        }
-        # "created_at":
+        },
+        "created_at": datetime.datetime.now(pytz.utc).isoformat()
     }
 
     _logger.info("JSON-LD: {0}".format(json.dumps(jsonld_wrap)))
