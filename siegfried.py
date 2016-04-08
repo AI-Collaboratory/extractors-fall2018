@@ -106,7 +106,7 @@ def process_file(parameters):
             "extractor_id":
                 "https://dts.ncsa.illinois.edu/api/extractors/siegfried"
         },
-        "created_at": datetime.datetime.now(pytz.utc).isoformat()
+        "created_at": datetime.datetime.utcnow().isoformat()
     }
 
     _logger.info("JSON-LD: {0}".format(json.dumps(jsonld_wrap)))
