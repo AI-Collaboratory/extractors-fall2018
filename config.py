@@ -11,15 +11,19 @@
 # =============================================================================
 
 import os
+import re
 
 # name to show in rabbitmq queue list
 extractorName = os.getenv('RABBITMQ_QUEUE', "siegfried")
 
 # URL to be used for connecting to rabbitmq
-rabbitmqURL = os.getenv('RABBITMQ_URI', "amqp://guest:guest@localhost/%2f")
+rabbitmqURL = os.getenv('RABBITMQ_URI',
+                        "amqp://guest:guest@localhost:5672/%2f")
+rabbitmqURL = re.sub(r'^"|"$', '', rabbitmqURL)
 
 # name of rabbitmq exchange
 rabbitmqExchange = os.getenv('RABBITMQ_EXCHANGE', "clowder")
+rabbitmqExchange = re.sub(r'^"|"$', '', rabbitmqExchange)
 
 # type of files to process
 messageType = "*.#.#.#"
