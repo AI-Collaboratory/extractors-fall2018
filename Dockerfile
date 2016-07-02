@@ -1,4 +1,4 @@
-FROM ncsa/clowder-extractors-python-base
+FROM clowder/pyclowder
 MAINTAINER Sandeep Satheesan <sandeeps@illinois.edu>
 
 # Setup software dependencies
