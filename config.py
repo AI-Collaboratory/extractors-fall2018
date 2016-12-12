@@ -26,7 +26,7 @@ rabbitmqExchange = os.getenv('RABBITMQ_EXCHANGE', "clowder")
 rabbitmqExchange = re.sub(r'^"|"$', '', rabbitmqExchange)
 
 # type of files to process
-messageType = "*.#.#.#"
+messageType = "*.file.#"
 
 # trust certificates, set this to false for self signed certificates
 sslVerify = os.getenv('RABBITMQ_SSLVERIFY', False)
