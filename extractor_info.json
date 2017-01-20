@@ -1,0 +1,26 @@
+{
+  "@context": "http://clowder.ncsa.illinois.edu/contexts/extractors.jsonld",
+  "name": "siegfried",
+  "version": "2.0",
+  "description": "Siegfried extractor. Use byte patterns from the PRONOM registry to attempt to determine file format.",
+  "author": "Greg Jansen <jansen@umd.edu>",
+  "contributors": ["Sandeep Satheesan <sandeeps@illinois.edu>"],
+  "contexts": [
+    {
+      "extent": "http://purl.org/dc/terms/extent",
+      "conformsTo": "http://purl.org/dc/terms/conformsTo"
+    }
+  ],
+  "repository": {
+    "repType": "git",
+    "repUrl": "https://opensource.ncsa.illinois.edu/bitbucket/scm/cats/extractors-siegfried.git"
+  },
+  "process": {
+    "file": [
+      "*"
+    ]
+  },
+  "external_services": [],
+  "dependencies": [],
+  "bibtex": []
+}

@@ -1,8 +1,8 @@
 # Introduction
 
 This README describes how to develop and test a Brown Dog extractor tool, based on the template project in this repository.
-It also explains how you can contribute your new tool to the Brown Dog Tools Catalogue.
-Brown Dog Extractor Tools are used to analyse files and produce data points as a result.
+It also explains how you can contribute your new tool to the Brown Dog Tools Catalog.
+Brown Dog Extractor Tools are used to analyze files and produce data points as a result.
 For example, one existing extractor uses the OpenCV software to process photographs, finding any human faces that are in a picture.
 You can find these and other extractor examples in the Brown Dog code repository.
 This repository contains a template project only. You can clone this repository to your local system and build it right away.

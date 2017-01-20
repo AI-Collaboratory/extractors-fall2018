@@ -1,4 +1,4 @@
-FROM clowder/pyclowder
+FROM clowder/pyclowder:2
 MAINTAINER Sandeep Satheesan <sandeeps@illinois.edu>
 
 # Setup software dependencies
@@ -23,6 +23,6 @@ ENV RABBITMQ_URI="" \
 USER clowder
 
 # command to run when starting docker
-COPY entrypoint.sh *.py /home/clowder/
+COPY entrypoint.sh siegfried.py extractor_info.json /home/clowder/
 ENTRYPOINT ["/home/clowder/entrypoint.sh"]
 CMD ["extractor"]

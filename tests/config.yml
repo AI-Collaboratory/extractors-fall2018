@@ -1,4 +1,0 @@
-host: localhost:9000
-user: browndog.user@gmail.com
-passwd: my secret password
-req_interval: 60
