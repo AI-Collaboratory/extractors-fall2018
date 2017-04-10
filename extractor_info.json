@@ -11,10 +11,16 @@
       "conformsTo": "http://purl.org/dc/terms/conformsTo"
     }
   ],
-  "repository": {
-    "repType": "git",
-    "repUrl": "https://opensource.ncsa.illinois.edu/bitbucket/scm/cats/extractors-siegfried.git"
-  },
+  "repository": [
+    {
+      "repType": "git",
+      "repUrl": "https://opensource.ncsa.illinois.edu/bitbucket/scm/cats/extractors-siegfried.git"
+    },
+    {
+      "repType": "docker",
+      "repUrl": "clowder/extractors-siegfried"
+    }
+  ],
   "process": {
     "file": [
       "*"

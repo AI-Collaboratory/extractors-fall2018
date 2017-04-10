@@ -3,7 +3,6 @@
 import subprocess
 import logging
 import json
-import datetime
 from pyclowder.extractors import Extractor
 import pyclowder.files
 
@@ -40,8 +39,8 @@ class Siegfried(Extractor):
 
         afile = result['files'][0]  # always one file only
 
-        content = {}  # assertions about the file
-        content['dcterms:extent'] = afile['filesize']
+        result = {}  # assertions about the file
+        result['extent'] = afile['filesize']
 
         matches = []
         for match in afile['matches']:
@@ -61,54 +60,12 @@ class Siegfried(Extractor):
             matches.append(m)
 
         if len(matches) > 0:
-            content['dcterms:conformsTo'] = matches
-        # elif len(matches) == 1:
-        #    content['dcterms:conformsTo'] = matches[0]
-        # content = matches[0]
+            result['conformsTo'] = matches
 
-        jsonld_wrap = {
-            "@context": {
-                "med": "http://medici.ncsa.illinois.edu/",
-                "extractor_id": {
-                  "@id": "med:extractor/id",
-                  "@type": "@id"
-                },
-                "user_id": {
-                  "@id": "med:user/id",
-                  "@type": "@id"
-                },
-                "created_at": {
-                  "@id": "http://purl.org/dc/terms/created",
-                  "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
-                },
-                "agent": {
-                  "@id": "http://www.w3.org/ns/prov#Agent"
-                },
-                "user": "med:user",
-                "extractor": "med:extractor",
-                "content": {
-                  "@id": "http://medici.ncsa.illinois.edu/metadata/content"
-                },
-                "file_id": {
-                  "@id": "http://medici.ncsa.illinois.edu/metadata/file_id"
-                },
-                "sf": "http://www.itforarchivists.com/siegfried/",
-                "dcterms": "http://purl.org/dc/terms/"
-            },
-            "content": content,
-            "agent": {
-                "@type": "cat:extractor",
-                "name": "Siegfried Extractor (PRONOM format identification)",
-                "extractor_id":
-                    "https://dts.ncsa.illinois.edu/api/extractors/siegfried"
-            },
-            "created_at": datetime.datetime.utcnow().isoformat()
-        }
-
-        logger.info("JSON-LD: {0}".format(json.dumps(jsonld_wrap)))
+        metadata = self.get_metadata(result, 'file', file_id, host)
 
         # upload metadata (metadata is a JSON-LD array of dict)
-        pyclowder.files.upload_metadata(connector, host, secret_key, file_id, jsonld_wrap)
+        pyclowder.files.upload_metadata(connector, host, secret_key, file_id, metadata)
 
 
 if __name__ == "__main__":
