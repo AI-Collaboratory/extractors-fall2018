@@ -1,6 +1,6 @@
 # clowder server
 clowder:
-  image: ncsa/clowder:develop
+  image: clowder/clowder:develop
   environment:
     RABBITMQ_URI: "amqp://guest:guest@rabbitmq:5672/%2f"
   ports:
@@ -25,9 +25,9 @@ rabbitmq:
 # start extractor
 # NOTE: run extractor independently with --net host, if not on virtualbox.
 siegfried:
-  image: ncsa/extractors-siegfried:latest
+  image: extractors-siegfried:latest
   environment:
-    RABBITMQ_URI: "amqp://guest:guest@localhost:5672/%2f"
+    RABBITMQ_URI: "amqp://guest:guest@rabbitmq:5672/%2f"
   links:
     - rabbitmq
     - clowder
